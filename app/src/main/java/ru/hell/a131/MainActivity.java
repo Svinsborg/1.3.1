@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private EditText inUser;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent goBlood = new Intent(MainActivity.this, BloodActivity.class);
+                String userStr = inUser.getText().toString();
+                goBlood.putExtra("name", userStr);
                 startActivity(goBlood);
             }
         });
@@ -41,7 +44,21 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent goStat = new Intent(MainActivity.this, StatisicActivity.class);
+                String userStr = inUser.getText().toString();
+                goStat.putExtra("name", userStr);
                 startActivity(goStat);
+            }
+        });
+
+        btSv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userStr = inUser.getText().toString();
+                String brDay = (inDay.getSelectedItem() + " " +  inMonth.getSelectedItem()+ " " +  inYear.getSelectedItem());
+
+                String msgRes = "The patient: " + userStr + "\n" + "Birthday: " + brDay;
+
+                Toast.makeText(MainActivity.this, msgRes, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -113,7 +130,4 @@ public class MainActivity extends AppCompatActivity {
         btSv = findViewById(R.id.butSave);
 
     }
-
-
-
 }

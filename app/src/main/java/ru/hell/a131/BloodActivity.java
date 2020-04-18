@@ -7,20 +7,24 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class BloodActivity extends AppCompatActivity {
 
 
-    private String userName;
-    private int pressUp ;
-    private int pressDw ;
-    private int pulse ;
-    private boolean tch ;
+    private Bundle userName;
+    private TextView setName;
+    private EditText pressUp ;
+    private EditText pressDw ;
+    private EditText pulse ;
+    private CheckBox tch ;
     private Button btSvBl;
     private TextView editTextDate;
     private TextView editTextTime;
@@ -33,6 +37,8 @@ public class BloodActivity extends AppCompatActivity {
         setContentView(R.layout.activity_blood);
 
         init();
+        final String userStr = userName.get("name").toString();
+        setName.setText(userStr);
 
         editTextDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +53,56 @@ public class BloodActivity extends AppCompatActivity {
                 callTimePicker();
             }
         });
+
+        btSvBl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int upper = 0;
+                int down = 0;
+                int pulseInt = 0;
+
+                String prUp = pressUp.getText().toString();
+
+                try {
+                    upper = Integer.parseInt(prUp);
+                } catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Toast.makeText(BloodActivity.this, "Upper: Insert the number", Toast.LENGTH_SHORT).show();
+                }
+
+                String prDw = pressDw.getText().toString();
+
+                try {
+                    down = Integer.parseInt(prDw);
+                } catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Toast.makeText(BloodActivity.this, "Down: Insert the number", Toast.LENGTH_SHORT).show();
+                }
+
+                String pul = pulse.getText().toString();
+
+                try {
+                    pulseInt = Integer.parseInt(pul);
+                } catch (NumberFormatException e){
+                    e.printStackTrace();
+                    Toast.makeText(BloodActivity.this, "Pulse: Insert the number", Toast.LENGTH_SHORT).show();
+                }
+
+                boolean tach = tch.isChecked();
+
+
+
+                String msgRes = "The patient: " + userStr + "\n"
+                                + "Upper: " + upper + "\n"
+                                + "Down: " + down + "\n"
+                                + "Pulse: " + pulseInt + "\n"
+                                + "Tachycardia: " + tach
+                                + "Date/time: " + editTextDate.getText() + "/" + editTextTime.getText();
+
+                Toast.makeText(BloodActivity.this, msgRes, Toast.LENGTH_LONG).show();
+                // finish();
+            }
+        });
     }
 
 
@@ -55,8 +111,14 @@ public class BloodActivity extends AppCompatActivity {
     private void init() {
 
         btSvBl = findViewById(R.id.butSaveBl);
+        setName = findViewById(R.id.swUser);
+        userName = getIntent().getExtras();
         editTextDate = findViewById(R.id.entDate);
         editTextTime = findViewById(R.id.entTime);
+        pressUp = findViewById(R.id.editUp);
+        pressDw = findViewById(R.id.editDw);
+        pulse = findViewById(R.id.editPl);
+        tch = findViewById(R.id.checkTach);
     }
 
     private void callDatePicker() {

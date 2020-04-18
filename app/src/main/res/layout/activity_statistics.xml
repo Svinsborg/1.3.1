@@ -128,7 +128,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@+id/divVert"
-        android:text="Weight"
+        android:text="@string/weight"
         android:textColor="@color/colorBlack"
         android:textSize="30dp" />
 
@@ -140,7 +140,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:layout_toStartOf="@+id/divVert"
-        android:text="Steps"
+        android:text="@string/steps"
         android:textColor="@color/colorBlack"
         android:textSize="30dp" />
 
@@ -164,9 +164,9 @@
         android:layout_toEndOf="@+id/divVert"
         android:ems="5"
         android:gravity="center"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:textSize="22dp"
-        android:hint="00,00"/>
+        android:hint="00.00"/>
 
     <EditText
         android:id="@+id/editStep"

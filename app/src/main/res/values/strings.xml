@@ -4,7 +4,7 @@
     <string name="title_start">Medical</string>
     <string name="contacts_eMail">eMail: medical@center.com</string>
     <string name="phone">Phone  Fax: +1 (514) 154 255 221</string>
-    <string name="userName">Full name</string>
+    <string name="userName">Full name:</string>
     <string name="name_last_name">Name, Last name</string>
     <string name="save">" Save"</string>
     <string name="upper">Upper</string>
@@ -15,6 +15,8 @@
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="def">0000</string>
+    <string name="weight">Weight</string>
+    <string name="steps">Steps</string>
     <string-array name="day">
         <item>Day</item>
         <item>01</item>
