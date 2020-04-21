@@ -14,10 +14,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class BloodActivity extends AppCompatActivity {
 
+    private List<Blood> parametrs = new ArrayList<>();
 
     private Bundle userName;
     private TextView setName;
@@ -90,17 +95,21 @@ public class BloodActivity extends AppCompatActivity {
 
                 boolean tach = tch.isChecked();
 
-
+                Date date = (Date) editTextDate.getText();
+                Time time = (Time) editTextTime.getText();
 
                 String msgRes = "The patient: " + userStr + "\n"
                                 + "Upper: " + upper + "\n"
                                 + "Down: " + down + "\n"
                                 + "Pulse: " + pulseInt + "\n"
                                 + "Tachycardia: " + tach
-                                + "Date/time: " + editTextDate.getText() + "/" + editTextTime.getText();
+                                + "Date/time: " + date + "/" + time;
 
                 Toast.makeText(BloodActivity.this, msgRes, Toast.LENGTH_LONG).show();
-                // finish();
+
+                parametrs.add(new Blood(upper, down, pulseInt, tach, date, time));
+
+                //finish();
             }
         });
     }

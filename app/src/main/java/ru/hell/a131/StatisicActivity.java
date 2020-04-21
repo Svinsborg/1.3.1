@@ -9,7 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StatisicActivity extends AppCompatActivity {
+
+    private List<Statistic> parametrs = new ArrayList<>();
 
     private Bundle userName;
     private TextView setName;
@@ -52,13 +57,14 @@ public class StatisicActivity extends AppCompatActivity {
                 }
 
                 String msgRes = "The patient: " + userStr + "\n"
-                        + "Weight: " + weightDl + "\n"
-                        + "Steps: " + stepsInt ;
+                                + "Weight: " + weightDl + "\n"
+                                + "Steps: " + stepsInt ;
 
                 Toast.makeText(StatisicActivity.this, msgRes, Toast.LENGTH_LONG).show();
+
+                parametrs.add(new Statistic(weightDl, stepsInt));
+
                 // finish();
-
-
             }
         });
     }

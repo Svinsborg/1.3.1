@@ -12,7 +12,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity {
+
+    private List<Individual> parametrs = new ArrayList<>();
+
     private EditText inUser;
     private Spinner inDay;
     private Spinner inMonth;
@@ -20,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btBlood;
     private Button btStat;
     private Button btSv;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 String msgRes = "The patient: " + userStr + "\n" + "Birthday: " + brDay;
 
                 Toast.makeText(MainActivity.this, msgRes, Toast.LENGTH_LONG).show();
+
+                parametrs.add(new Individual(userStr, brDay));
             }
         });
 
@@ -116,9 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }));
-
     }
-
 
     private void init(){
         inUser = findViewById(R.id.entUser);
@@ -128,6 +137,5 @@ public class MainActivity extends AppCompatActivity {
         btBlood = findViewById(R.id.butBlood);
         btStat = findViewById(R.id.butStat);
         btSv = findViewById(R.id.butSave);
-
     }
 }
