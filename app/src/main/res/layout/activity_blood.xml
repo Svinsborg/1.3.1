@@ -242,6 +242,7 @@
         android:layout_toStartOf="@+id/divVert"
         android:text="@string/date"
         android:textSize="30dp"
+        android:inputType="date"
         android:background="@color/setParam"/>
 
     <TextView
@@ -254,6 +255,7 @@
         android:layout_toEndOf="@+id/divVert"
         android:background="@color/setParam"
         android:gravity="center"
+        android:inputType="time"
         android:text="@string/time"
         android:textSize="30dp" />
 

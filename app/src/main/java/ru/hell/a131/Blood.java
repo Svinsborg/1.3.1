@@ -12,16 +12,16 @@ public class Blood {
     private int pulse;
     private boolean tah;
     private Date date;
-    private Time time;
+    //private Time time;
 
 
-    public Blood(int prUp, int prDw, int pulse, boolean tah, Date date, Time time) {
+    public Blood(int prUp, int prDw, int pulse, boolean tah, Date date) {
         this.prUp = prUp;
         this.prDw = prDw;
         this.pulse = pulse;
         this.tah = tah;
         this.date = date;
-        this.time = time;
+        //this.time = time;
     }
 
     public int getPrUp() {
@@ -64,13 +64,13 @@ public class Blood {
         this.date = date;
     }
 
-    public Time getTime() {
+/*    public Time getTime() {
         return time;
     }
 
     public void setTime(Time time) {
         this.time = time;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -81,12 +81,12 @@ public class Blood {
                 prDw == blood.prDw &&
                 pulse == blood.pulse &&
                 tah == blood.tah &&
-                Objects.equals(date, blood.date) &&
-                Objects.equals(time, blood.time);
+                Objects.equals(date, blood.date);
+                //Objects.equals(time, blood.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prUp, prDw, pulse, tah, date, time);
+        return Objects.hash(prUp, prDw, pulse, tah, date);
     }
 }

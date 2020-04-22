@@ -15,10 +15,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class BloodActivity extends AppCompatActivity {
 
@@ -34,6 +37,7 @@ public class BloodActivity extends AppCompatActivity {
     private TextView editTextDate;
     private TextView editTextTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("d.M.yyyy H : m");
 
 
     @Override
@@ -95,19 +99,27 @@ public class BloodActivity extends AppCompatActivity {
 
                 boolean tach = tch.isChecked();
 
-                Date date = (Date) editTextDate.getText();
-                Time time = (Time) editTextTime.getText();
+                Date date = null;
+
+                try {
+                    date = dateFormat.parse(editTextDate.getText() + " " + editTextTime.getText());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                //Date date = new Date (editTextDate.getText().toString());
+               // Time time = Time.valueOf(editTextTime.getText().toString());
 
                 String msgRes = "The patient: " + userStr + "\n"
                                 + "Upper: " + upper + "\n"
                                 + "Down: " + down + "\n"
                                 + "Pulse: " + pulseInt + "\n"
-                                + "Tachycardia: " + tach
-                                + "Date/time: " + date + "/" + time;
+                                + "Tachycardia: " + tach + "\n"
+                        + "Date/time: " + date ;
+                                //+ "Date/time: " + date + "/" + time;
 
                 Toast.makeText(BloodActivity.this, msgRes, Toast.LENGTH_LONG).show();
 
-                parametrs.add(new Blood(upper, down, pulseInt, tach, date, time));
+                parametrs.add(new Blood(upper, down, pulseInt, tach, date));
 
                 //finish();
             }
